@@ -1,7 +1,14 @@
+const itemDAO = require('../models/charityModel');
+const db = new itemDAO();
+
+
+db.init();
+
 
 // callback function to produce response for requests to /items
 exports.item_list = function(req, res) {
     res.send('<h1>Available Items</h1><p>Not yet implemented: will show a list of available items.</p>');
+    db.getAllItems();
 }
 
 // callback function for website root

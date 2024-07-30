@@ -25,3 +25,10 @@ exports.add_item = function(req, res){
 exports.about = function(req, res){
     res.send('<h1>ABOUT US: Not yet implemented.</h1>');
 }
+
+
+
+
+exports.get_entries_by_user = function(req, res) {
+    db.getEntriesByUser();
+}

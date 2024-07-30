@@ -20,6 +20,9 @@ router.get('/items/add', controller.add_item);
 // request handler for about page
 router.get('/about', controller.about);
 
+// request handler to get entries by specific user
+router.get('/entriesByUser', controller.get_entries_by_user);
+
 
 
 

@@ -35,7 +35,7 @@ class ItemList{
             description: 'VHS copy of Amadeus (1984) - in working condition',
             price: '5.00',
             store: 'West',
-            uploadedBy: 'test',
+            uploadedBy: 'David',
             uploadDate: '02/02/2024',
             tag:'media',
         });
@@ -63,6 +63,23 @@ class ItemList{
         })
     }
 
+
+    getEntriesByUser() {
+        //returns a Promise object which can be resolved or rejected
+        return new Promise((resolve, reject) => {
+            // uses find() with custom parameter to find entries uploaded by user 'test'
+            this.db.find({ uploadedBy: 'test' }, function(err, entries) {
+                //if error occurs reject Promise
+                if (err) {
+                    reject(err);
+                    //if no error resolve the promise and return the data
+                } else {
+                    resolve(entries);
+                    console.log('getEntriesByUser() returns: ', entries);
+                }
+            })
+        })
+    }
 
 }
 

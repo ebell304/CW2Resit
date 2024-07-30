@@ -7,13 +7,26 @@ db.init();
 
 // callback function to produce response for requests to /items
 exports.item_list = function(req, res) {
-    res.send('<h1>Available Items</h1><p>Not yet implemented: will show a list of available items.</p>');
-    db.getAllItems();
+    
+    db.getAllItems().then((list) => {
+        res.render('entries', {
+            'title': 'Available Items',
+            'entries': list
+        });
+        console.log('promise resolved');
+    })
+    .catch((err) => {
+        console.log('promise rejected', err);
+    })
 }
 
 // callback function for website root
 exports.landing_page = function(req, res) {
-    res.send('<h1>Welcome to the charity shop application.</h1>');
+    res.render("entries", {
+        'name': 'Book',
+        'description': 'An old book.',
+        'price': '999.99'
+        });
 }
 
 // callback function for add item page

@@ -4,6 +4,7 @@ const router = require('./routes/charityRoutes.js');
 const path = require('path');
 const public = path.join(__dirname,'public');
 const bodyParser = require('body-parser');
+const mustache = require('mustache-express');
 
 
 // maps router to requests from application root
@@ -19,3 +20,7 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.listen(3000, () => {
     console.log('Server started on port 3000. Ctrl^c to quit.');
 })
+
+// creates and sets mustache engine
+app.engine('mustache', mustache());
+app.set('view engine', 'mustache');

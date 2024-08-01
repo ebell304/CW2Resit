@@ -81,6 +81,28 @@ class ItemList{
         })
     }
 
+
+    // parses data from addEntry.mustache form to add new items to the database
+    addItem(name, description, price, store, uploadedBy, tag) {
+        var entry = {
+            name: name,
+            description: description,
+            price: price,
+            store: store,
+            uploadedBy: uploadedBy,
+            uploadDate: new Date().toISOString().split('T')[0],
+            tag: tag
+        }
+        console.log('Attempting to add item to database...', entry);
+        this.db.insert(entry, function(err, doc) {
+            if (err) {
+                console.log('Error adding item to database', subject);
+            } else {
+                console.log('Item successfully added to database', doc);
+            }
+        })
+    }
+
 }
 
 // exporting ItemList class so that it can be accessed by other files

@@ -29,10 +29,8 @@ exports.landing_page = function(req, res) {
         });
 }
 
-// callback function for add item page
-exports.add_item = function(req, res){
-    res.send('<h1>Not yet implemented: show a new entry page.</h1>');
-}
+
+
 
 
 exports.about = function(req, res){
@@ -44,4 +42,20 @@ exports.about = function(req, res){
 
 exports.get_entries_by_user = function(req, res) {
     db.getEntriesByUser();
+}
+
+
+// callback function for add item page
+exports.add_item = function(req, res){
+    res.render('addEntry');
+}
+
+exports.post_new_entry = function(req, res) {
+    console.log('processing post-new_entry controller');
+    if (!req.body.name) {
+    res.status(400).send("Entries must have an author.");
+    return;
+    }
+    db.addItem(req.body.name, req.body.description, req.body.price, req.body.store, req.body.uploadedBy, req.body.tag);
+    res.redirect('/');
 }

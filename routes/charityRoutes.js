@@ -16,12 +16,15 @@ router.get('/items', controller.item_list);
 
 // request handler for add item page
 router.get('/items/add', controller.add_item);
+router.post('/items/add', controller.post_new_entry);
 
 // request handler for about page
 router.get('/about', controller.about);
 
 // request handler to get entries by specific user
 router.get('/entriesByUser', controller.get_entries_by_user);
+
+
 
 
 

@@ -15,8 +15,8 @@ class UserDAO {
 
         // for the demo the password is the bcrypt of the username 
         init() { 
-            this.db.insert({ user: 'Peter', password:'$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C', store: 'north'});
-            this.db.insert({user: 'Ann', password:'$2b$10$bnEYkqZM.MhEF/LycycymOeVwkQONq8kuAUGx6G5tF9UtUcaYDs3S', store: 'west'}); 
+            this.db.insert({ user: 'Peter', password:'$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C', role: 'admin', store: 'north'});
+            this.db.insert({user: 'Ann', password:'$2b$10$bnEYkqZM.MhEF/LycycymOeVwkQONq8kuAUGx6G5tF9UtUcaYDs3S', role: 'volunteer', store: 'west'}); 
             return this;
         } 
 

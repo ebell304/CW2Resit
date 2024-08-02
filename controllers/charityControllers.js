@@ -9,16 +9,51 @@ db.init();
 // callback function to produce response for requests to /items
 exports.item_list = function(req, res) {
     
+    const store = req.params.store; // Extract store from the URL
+    
     db.getAllItems().then((list) => {
+        let filteredItems = list;
+
+        // Apply store filter
+        if (store) {
+            filteredItems = filteredItems.filter(item => item.store === store);
+        }
+
+        // Render the 'entries' view with the filtered items
         res.render('entries', {
-            'title': 'Available Items',
-            'entries': list
+            'title': `Items for Store: ${store}`,
+            'entries': filteredItems
         });
-        console.log('promise resolved');
+        console.log('Filtered items for store:', store);
     })
     .catch((err) => {
-        console.log('promise rejected', err);
+        console.log('Error retrieving items:', err);
+        res.status(500).send('Internal Server Error');
+    });
+}
+
+exports.item_list_by_store = function(req, res) {
+    const store = req.params.store; // Extract store from the URL
+    
+    db.getAllItems().then((list) => {
+        let filteredItems = list;
+
+        // Apply store filter
+        if (store) {
+            filteredItems = filteredItems.filter(item => item.store === store);
+        }
+
+        // Render the 'entries' view with the filtered items
+        res.render('entries', {
+            'title': `Items for Store: ${store}`,
+            'entries': filteredItems
+        });
+        console.log('Filtered items for store:', store);
     })
+    .catch((err) => {
+        console.log('Error retrieving items:', err);
+        res.status(500).send('Internal Server Error');
+    });
 }
 
 // callback function for website root
@@ -117,6 +152,46 @@ exports.post_new_user = function(req, res) {
         });
     };
 
+
+
+
+    exports.show_admin = function (req, res) {
+        userDao.getAllUsers()
+        .then((list) => {
+           res.render("admin", {
+             title: 'Admin dashboard',
+             user:"admin",
+             users: list,
+           });
+         
+         })
+         .catch((err) => {
+           console.log("promise rejected", err);
+         });
+    };
+
+       exports.admin_add_new_user=function(req, res){
+         res.render('addUser',{ user:"admin"})
+       }
+       
+       exports.admin_post_new_user = function (req, res) {
+         const user = req.body.username;
+         const password = req.body.pass;
+         const role = req.body.role;
+       
+         if (!user || !password) {
+           res.send(401, "no user or no password");
+           return;
+         }
+         userDao.lookup(user, function (err, u) {
+           if (u) {
+             res.send(401, "User exists:", user);
+             return;
+           }
+           userDao.create(user, password,role);
+         });
+         res.render("userAdded")
+        };
 
  
 

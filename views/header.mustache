@@ -3,3 +3,16 @@
 </head>
 
 <title>Mustache Example</title>
+
+<div class="text-right" style="margin-bottom: 1em;">
+{{^user}}
+ <a id="login" href="/login" class="btn btn-primary">
+ Log in
+ </a>
+{{/user}}
+{{#user}}
+ <a id="logout" href="/logout" class="btn btn-primary">
+ Log out
+ </a>
+{{/user}}
+</div>

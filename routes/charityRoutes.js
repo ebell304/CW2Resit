@@ -1,6 +1,8 @@
 // importing the Express module to access express.Router class
 const express = require('express');
-const router = express.Router(); 
+const router = express.Router();
+const {login} = require('../auth/auth');
+const {verify} =require('../auth/auth');
 
 // importing controller
 const controller = require('../controllers/charityControllers.js');
@@ -15,8 +17,8 @@ router.get("/", controller.landing_page);
 router.get('/items', controller.item_list);
 
 // request handler for add item page
-router.get('/items/add', controller.add_item);
-router.post('/items/add', controller.post_new_entry);
+router.get('/items/add', verify, controller.add_item);
+router.post('/items/add', verify, controller.post_new_entry);
 
 // request handler for about page
 router.get('/about', controller.about);
@@ -25,7 +27,22 @@ router.get('/about', controller.about);
 router.get('/entriesByUser', controller.get_entries_by_user);
 
 
+// request handler for staff login page
+router.get('/login', controller.show_login_page); 
 
+// request handler for staff logout page
+router.get("/logout",verify, controller.logout); 
+
+router.get("/loggedIn",verify, controller.loggedIn_landing);
+
+
+
+// TODO - LET ADMINS CREATE NEW USER //////////////////////////////////////
+router.post('/admin/addVolunteer', controller.post_new_user); 
+
+
+router.post('/login', login, controller.handle_login); 
+    
 
 
 

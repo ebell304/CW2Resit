@@ -1,5 +1,6 @@
 const itemDAO = require('../models/charityModel');
 const db = new itemDAO();
+const userDao = require('../models/userModel'); 
 
 
 db.init();
@@ -47,7 +48,9 @@ exports.get_entries_by_user = function(req, res) {
 
 // callback function for add item page
 exports.add_item = function(req, res){
-    res.render('addEntry');
+    res.render('addEntry', {
+        'user': 'user'
+    });
 }
 
 exports.post_new_entry = function(req, res) {
@@ -57,5 +60,65 @@ exports.post_new_entry = function(req, res) {
     return;
     }
     db.addItem(req.body.name, req.body.description, req.body.price, req.body.store, req.body.uploadedBy, req.body.tag);
-    res.redirect('/');
+    res.redirect("/loggedIn");
 }
+
+
+exports.post_new_user = function(req, res) { 
+    const user = req.body.username; 
+    const password = req.body.pass;
+    if (!user || !password) { 
+        res.send(401, 'Error processing username or password');
+        return;
+    }
+
+    userDao.lookup(user, function(err, u) { 
+        if (u) {
+            res.send(401, "Username already exists:", user);
+            return;
+        }
+        userDao.create(user, password); console.log("register user", user, "password", password);
+        res.redirect('/admin');
+    });
+
+}
+
+
+    exports.show_login_page = function(req, res) {
+        res.render("user/login");
+    };
+
+
+
+    exports.handle_login = function (req, res) {
+        res.render("entries", {
+            user: "user"
+        }); 
+    }; 
+
+
+    exports.logout= function (req, res) {
+        res
+         .clearCookie("jwt")
+         .status(200)
+         .redirect("/");
+    } 
+
+
+
+    exports.loggedIn_landing = function (req, res) {
+        db.getAllEntries().then((list) => {
+            res.render("entries", {
+            entries: list, user: "user"
+            });
+        console.log("promise resolved");
+        }).catch((err) => {
+        console.log("promise rejected", err);
+        });
+    };
+
+
+ 
+
+
+

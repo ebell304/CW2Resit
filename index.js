@@ -1,13 +1,24 @@
 const express = require('express');
 const app = express();
+
+require('dotenv').config();
+
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
+const bodyParser = require('body-parser');
+// adds middleware to parse incoming request bodies before handling
+app.use(bodyParser.urlencoded({extended: true}));
+
 const router = require('./routes/charityRoutes.js');
 const path = require('path');
 const public = path.join(__dirname,'public');
-const bodyParser = require('body-parser');
+
 const mustache = require('mustache-express');
 
-// adds middleware to parse incoming request bodies before handling
-app.use(bodyParser.urlencoded({extended: false}));
+
+
+
 
 // maps router to requests from application root
 app.use('/', router);
@@ -25,5 +36,10 @@ app.listen(3000, () => {
 // creates and sets mustache engine
 app.engine('mustache', mustache());
 app.set('view engine', 'mustache');
+
+
+
+
+
 
 

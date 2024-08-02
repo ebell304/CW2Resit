@@ -15,8 +15,11 @@ router.get("/", controller.landing_page);
 router.get('/items', controller.item_list);
 
 // request handler for add item page
-router.get('/items/add', auth.verifyVolunteer, controller.add_item);
-router.post('/items/add', auth.verifyVolunteer, controller.post_new_entry);
+router.get('/addItem', auth.verifyVolunteer, controller.add_item);
+router.post('/addItem', auth.verifyVolunteer, controller.post_new_entry);
+
+
+router.get('/delete/:_id', controller.delete_item);
 
 // request handler for about page
 router.get('/about', auth.verifyAdmin, controller.about);

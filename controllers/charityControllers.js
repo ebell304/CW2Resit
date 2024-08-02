@@ -88,6 +88,19 @@ exports.add_item = function(req, res){
     });
 }
 
+
+// callback function for add item page
+exports.delete_item = function(req, res){
+    console.log("ATTEMPTING TO REMOVE");
+    let _id = req.params._id;
+    console.log("ID = ", _id);
+    db.deleteItem(_id);
+    console.log("REMOVED");
+    res.redirect('/items');
+}
+
+
+
 exports.post_new_entry = function(req, res) {
     console.log('processing post-new_entry controller');
     if (!req.body.name) {
@@ -95,7 +108,7 @@ exports.post_new_entry = function(req, res) {
     return;
     }
     db.addItem(req.body.name, req.body.description, req.body.price, req.body.store, req.body.uploadedBy, req.body.tag);
-    res.redirect("/loggedIn");
+    res.redirect("/items");
 }
 
 
@@ -119,25 +132,25 @@ exports.post_new_user = function(req, res) {
 }
 
 
-    exports.show_login_page = function(req, res) {
-        res.render("user/login");
-    };
+exports.show_login_page = function(req, res) {
+    res.render("user/login");
+};
 
 
 
-    exports.handle_login = function (req, res) {
-        res.render("entries", {
-            user: "user"
-        }); 
-    }; 
+exports.handle_login = function (req, res) {
+    res.render("entries", {
+        user: "user"
+    }); 
+}; 
 
 
-    exports.logout= function (req, res) {
-        res
-         .clearCookie("jwt")
-         .status(200)
-         .redirect("/");
-    } 
+exports.logout= function (req, res) {
+    res
+    .clearCookie("jwt")
+    .status(200)
+    .redirect("/");
+} 
 
 
 
@@ -155,20 +168,19 @@ exports.post_new_user = function(req, res) {
 
 
 
-    exports.show_admin = function (req, res) {
-        userDao.getAllUsers()
-        .then((list) => {
-           res.render("admin", {
-             title: 'Admin dashboard',
-             user:"admin",
-             users: list,
-           });
-         
-         })
-         .catch((err) => {
-           console.log("promise rejected", err);
-         });
-    };
+exports.show_admin = function (req, res) {
+    userDao.getAllUsers()
+    .then((list) => {
+        res.render("admin", {
+            title: 'Admin dashboard',
+            user:"admin",
+            users: list,
+        });
+    })
+    .catch((err) => {
+        console.log("promise rejected", err);
+    });
+};
 
        exports.admin_add_new_user=function(req, res){
          res.render('addUser',{ user:"admin"})

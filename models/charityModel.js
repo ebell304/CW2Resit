@@ -103,6 +103,10 @@ class ItemList{
         })
     }
 
+    deleteItem(_id){
+        return this.db.remove({_id: _id});
+    }
+
 }
 
 // exporting ItemList class so that it can be accessed by other files

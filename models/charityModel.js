@@ -18,11 +18,11 @@ class ItemList{
     init() {
 
         this.db.insert({
-            name: 'Shirt',
+            name: 'Dress Shirt',
             description: 'White long-sleeved shirt - Large',
             price: '9.00',
             store: 'north',
-            uploadedBy: 'test',
+            uploadedBy: 'Peter',
             uploadDate: '01/01/2024',
             tag:'clothing',
         });
@@ -35,12 +35,42 @@ class ItemList{
             description: 'VHS copy of Amadeus (1984) - in working condition',
             price: '5.00',
             store: 'west',
-            uploadedBy: 'David',
+            uploadedBy: 'Ann',
             uploadDate: '02/02/2024',
             tag:'media',
         });
         //for later debugging
         console.log('Database entry Amadeus VHS inserted');
+
+        this.db.insert({
+            name: 'Basketball',
+            description: 'Standard orange basketball - in perfect condition.',
+            price: '5.99',
+            store: 'west',
+            uploadedBy: 'Ann',
+            uploadDate: '01/02/2024',
+            tag:'sport',
+        });
+
+        this.db.insert({
+            name: 'Monopoly Board Game',
+            description: 'Full board game with all pieces included.',
+            price: '2.50',
+            store: 'west',
+            uploadedBy: 'Ann',
+            uploadDate: '08/02/2024',
+            tag:'entertainment',
+        });
+
+        this.db.insert({
+            name: 'Decorative clock',
+            description: 'Modern analogue clock - in working condition',
+            price: '7.50',
+            store: 'west',
+            uploadedBy: 'Ann',
+            uploadDate: '08/02/2024',
+            tag:'home',
+        });
     }
 
 

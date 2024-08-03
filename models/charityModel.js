@@ -160,18 +160,10 @@ class ItemList{
 
         console.log("UPDATED ENTRY:", update);
 
-    
+        return this.db.update({ _id: _id}, { $set: { name: name, description: description, price: price, tag: tag} });
                 
         
-            
-        db.update({ _id: _id }, {name: 'name'}, (err, numReplaced) => {
-            console.log("Update callback invoked");
-            if (err) {
-                console.error('Error updating document:', err);
-            } else {
-                console.log(`Number of documents updated: ${numReplaced}`);
-            }
-        });
+
         
     }
 

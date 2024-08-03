@@ -20,11 +20,11 @@ class UserDAO {
             return this;
         } 
 
-        create(username, password) { 
+        create(username, password, role, store) { 
             const that = this;
             bcrypt.hash(password, saltRounds).then(function(hash){ 
                 var entry = { 
-                    user: username, password: hash,
+                    user: username, password: hash, role: role, store: store
                 }; 
                 that.db.insert(entry, function (err) {
                     if (err) { console.log("Can't insert user:", username);}
@@ -42,7 +42,26 @@ class UserDAO {
                     } return cb(null, entries[0]);
                 }
             });
-        } 
+        }
+
+
+       
+        getAllUsers() {
+            return new Promise((resolve, reject) => {
+            this.db.find({}, function (err, users) {
+              if (err) {
+                reject (err) ;
+              } else {
+                resolve(users);
+                console.log("function getAllUsers() returns: ", users);
+                
+              }
+            });
+            });
+        }
+        
+
+
 } 
         
 const dao = new UserDAO(); 

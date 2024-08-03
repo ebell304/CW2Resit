@@ -1,29 +1,16 @@
 <html>
+
 <head>
     {{>header}}
 </head>
-<body class="container">
-<div class="text-right" style="margin-bottom: 1em;">
-{{^user}}
-  <a id="login" href="/register" class="btn btn-primary">
-    Register
-  </a>
-  <a id="login" href="/login" class="btn btn-primary">
-    Sign in
-  </a>
-{{/user}}
-{{#user}}
-    <a id="View posts" href="/loggedIn" class="btn btn-primary">
-   View posts
-  </a>
-<a href="/new" class="btn btn-primary">
-Write in the guestbook
-</a>
 
-  <a id="logout" href="/logout" class="btn btn-primary">
-    Sign out
-  </a>
-{{/user}}
+
+<body class="container">
+
+
+<div class="text-right" style="margin-bottom: 1em;">
+
+
 </div>
 <h1>{{title}}</h1>
 <div>
@@ -31,19 +18,30 @@ Write in the guestbook
 <div class="card">
     <div class="card-body">
           <h4 class="card-title">Add new user</h4>
-   <form method="post" action="/adminPostNewUser">
+   <form method="post" action="/addUser">
     <div class="form-group">
         {{user-name-error}}
-        <label for="username">User Name</label>
+        <label for="username">Username</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Enter user name" required>
     </div>
    <div class="form-group">
         <label for="role">Role</label>
         <select class="form-control" name="role" id="role" required>
-            <option value="normalUser">User</option>
+            <option value="volunteer">Volunteer</option>
             <option value="admin">Admin</option>
         </select>
     </div>
+
+    <div class="form-group">
+        <label for="store">Store</label>
+        <select class="form-control" name="store" id="store" required>
+            <option value="north">North</option>
+            <option value="east">East</option>
+            <option value="east">South</option>
+            <option value="east">West</option>
+        </select>
+    </div>
+
     <div class="form-group">
         <label for="password">Password (8 characters minimum)</label>
         <input type="password" class="form-control" id="pass" name="pass" placeholder="Enter password" minlength="8" required>
@@ -57,4 +55,5 @@ Write in the guestbook
   </div>
 </div>
 </body>
+
 </html>

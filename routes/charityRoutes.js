@@ -44,9 +44,9 @@ router.get("/items/:store", controller.item_list);
 
 
 
-router.get("/admin", auth.verifyVolunteer, controller.show_admin);
-router.get("/admin/addVolunteer", auth.verifyAdmin, controller.admin_add_new_user);
-router.post("/admin/addVolunteer", auth.verifyAdmin, controller.post_new_user);
+router.get("/admin", auth.verifyAdmin, controller.show_admin);
+router.get("/addUser", auth.verifyAdmin, controller.admin_add_new_user);
+router.post("/addUser", auth.verifyAdmin, controller.admin_post_new_user);
     
 
 

@@ -25,14 +25,8 @@ exports.login = function (req, res,next) {
 
         res.cookie("jwt", accessToken, { httpOnly: true});
         
-        if (payload.role == "admin") {
-          
-            return res.render("admin", {
-                title: "Admin Dashboard",
-                user: "user",
-            });
-            
-            //return res.redirect('/admin');
+        if (payload.role == "admin") {         
+            return res.redirect('/admin');
           }
           if (payload.role == "volunteer") {
             //return res.redirect(`/items/${encodeURIComponent(payload.store)}`);

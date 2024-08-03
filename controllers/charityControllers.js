@@ -130,6 +130,8 @@ exports.post_new_user = function(req, res) {
         res.redirect('/admin');
     });
 
+    
+
 }
 
 
@@ -155,21 +157,23 @@ exports.logout= function (req, res) {
 
 
 
-    exports.loggedIn_landing = function (req, res) {
-        db.getAllEntries().then((list) => {
-            res.render("entries", {
-            entries: list, user: "user"
-            });
-        console.log("promise resolved");
-        }).catch((err) => {
-        console.log("promise rejected", err);
+exports.loggedIn_landing = function (req, res) {
+    db.getAllEntries().then((list) => {
+        res.render("entries", {
+        entries: list, user: "user"
         });
-    };
+    console.log("promise resolved");
+    }).catch((err) => {
+    console.log("promise rejected", err);
+    });
+};
 
 
 
 
 exports.show_admin = function (req, res) {
+
+    
     userDao.getAllUsers()
     .then((list) => {
         res.render("admin", {
@@ -183,28 +187,43 @@ exports.show_admin = function (req, res) {
     });
 };
 
-       exports.admin_add_new_user=function(req, res){
-         res.render('addUser',{ user:"admin"})
-       }
+
+exports.admin_add_new_user=function(req, res){
+    res.render('addUser',{ user:"admin"})
+    
+}
+
        
-       exports.admin_post_new_user = function (req, res) {
-         const user = req.body.username;
-         const password = req.body.pass;
-         const role = req.body.role;
+exports.admin_post_new_user = function (req, res) {
+    console.log("POSTING NEW USER");
+    const user = req.body.username;
+    const password = req.body.pass;
+    const role = req.body.role;
        
-         if (!user || !password) {
-           res.send(401, "no user or no password");
-           return;
-         }
-         userDao.lookup(user, function (err, u) {
-           if (u) {
-             res.send(401, "User exists:", user);
-             return;
-           }
-           userDao.create(user, password,role);
-         });
-         res.render("userAdded")
-        };
+    if (!user || !password) {
+        res.send(401, "no user or no password");
+        return;
+    }
+    userDao.lookup(user, function (err, u) {
+        if (u) {
+            res.send(401, "User exists:", user);
+            return;
+        }
+        userDao.create(user, password,role);
+
+        
+    
+        
+    });
+
+    // Implements a 50ms delay before redirecting to /admin page
+        // This allows for the getAllUsers() function in userModel.js to execute and update list of users before redirecting
+        setTimeout(function() {
+            res.redirect('/admin');
+        }, 50); 
+    
+    
+};
 
  
 

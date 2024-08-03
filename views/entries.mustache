@@ -15,31 +15,36 @@
         </a>
     {{/canEdit}}
 
-    {{#entries}}
-    <div>
-        <div>
-            <h4>{{name}}</h4>
-            <p>{{description}}</p>
+    <div class="entryContainer">
+    
+        {{#entries}}
+        <div class="item">
             <div>
-            £{{price}}
+                <h4>{{name}}</h4>
+                <div>
+                    <h5>£{{price}}<h5>
+                    <h5>Store: {{store}}</h5>
+                </div>
+                <p>{{description}}</p>
+                
             </div>
-            <p>Store: {{store}}</p>
-        </div>
 
-        {{#canEdit}}
-        <a id="update" href="/update/{{_id}}" class="btn btn-primary">
-            Update Item
-        </a>
+            {{#canEdit}}
+            <a id="update" href="/update/{{_id}}" class="btn btn-primary">
+                Update Item
+            </a>
 
-        <a id="delete" href="/delete/{{_id}}" class="btn btn-primary">
-            Remove Item
-        </a>
-        {{/canEdit}}
-        
+            <a id="delete" href="/delete/{{_id}}" class="btn btn-primary">
+                Remove Item
+            </a>
+            {{/canEdit}}
+            
 
     </div>
     <hr>
     {{/entries}}
+
+    </div>
 </body>
 
 </html>

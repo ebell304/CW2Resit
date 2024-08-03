@@ -1,4 +1,59 @@
-body{
-    color: red;
-    background-color: yellow;
+
+
+.banner{
+    background-color: darkslategrey;
+    height: 10%;
+}
+
+
+nav{
+    background-color: grey;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 12%;
+    padding-right: 12%;
+    align-items: center;
+
+    height: 5%;
+    
+}
+
+nav a{
+    color: white;
+    font-size: 19px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-shadow: 1px 1px black;
+}
+nav a:hover{
+    color: lightcyan;
+}
+
+
+
+.entryContainer{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+
+    background-color: red;
+    margin-left: 5%;
+    margin-right: 5%;
+
+}
+
+.item{
+    background-color: lightyellow;
+    box-shadow: 10px 10px 10px rgb(0 0 0 / 40%);
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+    width: 100%;
+}
+
+.item h5, h4, p{
+    margin-left: 5%;
+}
+
+.item h4{
+    margin-top: 3%;
 }

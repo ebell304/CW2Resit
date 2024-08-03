@@ -114,6 +114,9 @@ class ItemList{
 
     // parses data from addEntry.mustache form to add new items to the database
     addItem(name, description, price, store, uploadedBy, tag) {
+
+        price = parseFloat(price).toFixed(2);
+
         var entry = {
             name: name,
             description: description,

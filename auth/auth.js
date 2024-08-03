@@ -29,8 +29,8 @@ exports.login = function (req, res,next) {
             return res.redirect('/admin');
           }
           if (payload.role == "volunteer") {
-            //return res.redirect(`/items/${encodeURIComponent(payload.store)}`);
-            return res.redirect('/addItem');
+            return res.redirect(`/items/${encodeURIComponent(payload.store)}`);
+            //return res.redirect('/items');
         }
     
     next();
@@ -61,7 +61,8 @@ exports.verifyAdmin = function (req, res, next) {
     let accessToken = req.cookies.jwt;
     let payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
     if (payload.role != "admin") {
-      return res.status(403).send();
+      //return res.status(403).send();
+      return res.redirect('/login');
     }
     try {
       next();

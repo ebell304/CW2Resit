@@ -107,6 +107,41 @@ class ItemList{
         return this.db.remove({_id: _id});
     }
 
+
+    updateItem(_id, name, description, price, tag) {
+        console.log("ATTEMPTING TO UPDATE");
+
+        
+        console.log("ID: ", _id);
+
+
+
+        const update = {
+            $set: {
+              name: name,
+              description: description,
+              price: price,
+              tag: tag
+            }
+          };
+
+        console.log("UPDATED ENTRY:", update);
+
+    
+                
+        
+            
+        db.update({ _id: _id }, {name: 'name'}, (err, numReplaced) => {
+            console.log("Update callback invoked");
+            if (err) {
+                console.error('Error updating document:', err);
+            } else {
+                console.log(`Number of documents updated: ${numReplaced}`);
+            }
+        });
+        
+    }
+
 }
 
 // exporting ItemList class so that it can be accessed by other files

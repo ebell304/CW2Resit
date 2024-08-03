@@ -21,8 +21,17 @@ router.post('/addItem', auth.verifyVolunteer, controller.post_new_entry);
 
 router.get('/delete/:_id', controller.delete_item);
 
+
+router.get('/update/:_id',  controller.update_item);
+router.post('/update/:_id', controller.confirm_update);
+
+
+
+
+
+
 // request handler for about page
-router.get('/about', auth.verifyAdmin, controller.about);
+router.get('/about', controller.about);
 
 // request handler to get entries by specific user
 router.get('/entriesByUser', controller.get_entries_by_user);
@@ -40,7 +49,7 @@ router.get("/loggedIn", auth.verify, controller.loggedIn_landing);
 
 
 // items page (filtered by store)
-router.get("/items/:store", controller.item_list);
+router.get("/items/:store", auth.verifyVolunteer, controller.item_list_by_store);
 
 
 

@@ -11,6 +11,7 @@ exports.item_list = function(req, res) {
     
     const store = req.params.store; // Extract store from the URL
     
+    
     db.getAllItems().then((list) => {
         let filteredItems = list;
 
@@ -34,6 +35,14 @@ exports.item_list = function(req, res) {
 
 exports.item_list_by_store = function(req, res) {
     const store = req.params.store; // Extract store from the URL
+
+    const userStore = req.user.store;
+
+    let canEdit = false;
+
+    if(store == userStore){
+        canEdit = true;
+    }
     
     db.getAllItems().then((list) => {
         let filteredItems = list;
@@ -45,8 +54,8 @@ exports.item_list_by_store = function(req, res) {
 
         // Render the 'entries' view with the filtered items
         res.render('entries', {
-            'title': `Items for Store: ${store}`,
-            'entries': filteredItems
+            'entries': filteredItems,
+            canEdit: canEdit
         });
         console.log('Filtered items for store:', store);
     })
@@ -111,6 +120,25 @@ exports.post_new_entry = function(req, res) {
     db.addItem(req.body.name, req.body.description, req.body.price, req.user.store, req.user.username, req.body.tag);
     res.redirect("/items");
 }
+
+
+
+
+exports.update_item = function(req, res){
+    console.log("SHOWING UPDATE PAGE");
+    res.render('updateEntry');
+}
+
+exports.confirm_update= function(req, res){
+    console.log("CONFIRMING UPDATE");
+    let _id = req.params._id;
+    db.updateItem(_id, req.body.name, req.body.description, req.body.price, req.body.tag);
+    res.redirect('/items');
+}
+
+
+
+
 
 
 exports.post_new_user = function(req, res) { 
@@ -199,7 +227,8 @@ exports.admin_post_new_user = function (req, res) {
     console.log("POSTING NEW USER");
     const user = req.body.username;
     const password = req.body.pass;
-    const role = req.body.role;
+    const role = 'volunteer';
+    const store = req.body.store;
        
     if (!user || !password) {
         res.send(401, "no user or no password");
@@ -210,7 +239,7 @@ exports.admin_post_new_user = function (req, res) {
             res.send(401, "User exists:", user);
             return;
         }
-        userDao.create(user, password,role);
+        userDao.create(user, password, role, store);
 
         
     

@@ -51,6 +51,10 @@ router.post("/addUser", auth.verifyAdmin, controller.admin_post_new_user);
 
 
 
+router.get("/removeStaff/:username", auth.verifyAdmin, controller.admin_remove_staff);
+
+
+
 // functionality for 404 errors (page not found)
 router.use(function(req, res) {
     res.status(404);

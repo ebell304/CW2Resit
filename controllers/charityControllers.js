@@ -193,6 +193,7 @@ exports.admin_add_new_user=function(req, res){
     
 }
 
+
        
 exports.admin_post_new_user = function (req, res) {
     console.log("POSTING NEW USER");
@@ -226,6 +227,16 @@ exports.admin_post_new_user = function (req, res) {
 };
 
  
+
+
+exports.admin_remove_staff=function(req, res){
+    // get username from url
+    const username = req.params.username;
+    userDao.removeStaff(username);
+    console.log("STAFF MEMBER ", username, " REMOVED");
+    res.redirect('/admin');
+    
+}
 
 
 

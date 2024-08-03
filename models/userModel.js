@@ -59,6 +59,11 @@ class UserDAO {
             });
             });
         }
+
+
+        removeStaff(user){
+            return this.db.remove({user: user});
+        }
         
 
 

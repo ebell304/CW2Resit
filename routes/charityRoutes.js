@@ -49,7 +49,7 @@ router.get("/loggedIn", auth.verify, controller.loggedIn_landing);
 
 
 // items page (filtered by store)
-router.get("/items/:store", auth.verifyVolunteer, controller.item_list_by_store);
+router.get("/items/:store", auth.verify, controller.item_list_by_store);
 
 
 

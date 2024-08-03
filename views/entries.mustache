@@ -5,7 +5,16 @@
 </head>
 
 <body>
-    <h1>{{title}}</h1>
+
+
+
+
+    {{#canEdit}}
+        <a id="addItem" href="/addItem" class="btn btn-primary">
+            Add New Item
+        </a>
+    {{/canEdit}}
+
     {{#entries}}
     <div>
         <div>

@@ -42,16 +42,21 @@ exports.login = function (req, res,next) {
 
 
 exports.verify = function (req, res, next) {
-  console.log("VERIFY FUNCTION WORKS")
+  console.log("VERIFY FUNCTION WORKS");
   let accessToken = req.cookies.jwt;
+
   if (!accessToken) {
-    return res.status(403).send();
+      // allow access to webpage if no accessToken 
+      return next();
   }
+
   try {
-    next();
+      let payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
+      req.user = payload; 
+      next(); 
   } catch (e) {
-    //if an error occured return request unauthorized error
-    res.status(401).send();
+      console.error("JWT verification error:", e);
+      res.status(401).send("Invalid token");
   }
 };
 

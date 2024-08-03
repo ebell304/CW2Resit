@@ -34,22 +34,21 @@ exports.item_list = function(req, res) {
 }
 
 exports.item_list_by_store = function(req, res) {
-    const store = req.params.store; // Extract store from the URL
+    const store = req.params.store; // extracts store from the URL
 
-    const userStore = req.user.store;
+    const userStore = req.user ? req.user.store : null; 
 
-    let canEdit = false;
+    let canEdit = false; // by default hides update/delete buttons
 
     if(store == userStore){
-        canEdit = true;
+        canEdit = true; // user can edit if their store matches that of URL
     }
     
     db.getAllItems().then((list) => {
         let filteredItems = list;
 
-        // Apply store filter
-        if (store) {
-            filteredItems = filteredItems.filter(item => item.store === store);
+        if (userStore && store === userStore) {
+            canEdit = true;
         }
 
         // Render the 'entries' view with the filtered items
@@ -113,12 +112,13 @@ exports.delete_item = function(req, res){
 exports.post_new_entry = function(req, res) {
     console.log('processing post-new_entry controller');
     console.log("PAYLOAD STORE:", req.body.store);
+    store = req.user.store;
     if (!req.body.name) {
     res.status(400).send("Entries must have an author.");
     return;
     }
     db.addItem(req.body.name, req.body.description, req.body.price, req.user.store, req.user.username, req.body.tag);
-    res.redirect("/items");
+    res.redirect(`/items/${encodeURIComponent(store)}`);
 }
 
 

@@ -45,11 +45,8 @@ exports.item_list_by_store = function(req, res) {
     }
     
     db.getAllItems().then((list) => {
-        let filteredItems = list;
+        let filteredItems = list.filter(item => item.store === store);
 
-        if (userStore && store === userStore) {
-            canEdit = true;
-        }
 
         // Render the 'entries' view with the filtered items
         res.render('entries', {

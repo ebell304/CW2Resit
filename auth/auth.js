@@ -23,11 +23,16 @@ exports.login = function (req, res,next) {
         console.log("PAYLOAD: " , payload);
         let accessToken = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
 
+        res.cookie("jwt", accessToken, { httpOnly: true});
+        
         if (payload.role == "admin") {
+          
             return res.render("admin", {
                 title: "Admin Dashboard",
                 user: "user",
             });
+            
+            //return res.redirect('/admin');
           }
           if (payload.role == "volunteer") {
             //return res.redirect(`/items/${encodeURIComponent(payload.store)}`);
@@ -43,24 +48,22 @@ exports.login = function (req, res,next) {
 
 
 exports.verify = function (req, res, next) {
-    let accessToken = req.cookies.jwt;
-     
-    if(!accessToken) { 
-        res.redirect('login');
-    } 
-     
-    try{
-        // passes username parameter to next page
-        let payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-        req.username = payload.username;
-        next(); } catch (e) {
-        //if an error occurred return request unauthorized error
-        res.status(401).send();
-    }
-  };
+  console.log("VERIFY FUNCTION WORKS")
+  let accessToken = req.cookies.jwt;
+  if (!accessToken) {
+    return res.status(403).send();
+  }
+  try {
+    next();
+  } catch (e) {
+    //if an error occured return request unauthorized error
+    res.status(401).send();
+  }
+};
 
 
 exports.verifyAdmin = function (req, res, next) {
+  console.log("VERIFY ADMIN FUNCTION WORKS");
     let accessToken = req.cookies.jwt;
     let payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
     if (payload.role != "admin") {
@@ -77,9 +80,10 @@ exports.verifyAdmin = function (req, res, next) {
 exports.verifyVolunteer = function (req, res, next) {
     let accessToken = req.cookies.jwt;
     let payload = jwt.verify(accessToken, process.env.ACCESS_TOKEN_SECRET);
-    req.store = payload.store;
+    req.user = payload;
     if (payload.role != "volunteer") {
-      return res.status(403).send();
+      //return res.status(403).send();
+      return res.redirect('/login');
     }
     try {
       next();

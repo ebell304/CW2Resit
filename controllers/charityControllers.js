@@ -103,11 +103,12 @@ exports.delete_item = function(req, res){
 
 exports.post_new_entry = function(req, res) {
     console.log('processing post-new_entry controller');
+    console.log("PAYLOAD STORE:", req.body.store);
     if (!req.body.name) {
     res.status(400).send("Entries must have an author.");
     return;
     }
-    db.addItem(req.body.name, req.body.description, req.body.price, req.body.store, req.body.uploadedBy, req.body.tag);
+    db.addItem(req.body.name, req.body.description, req.body.price, req.user.store, req.user.username, req.body.tag);
     res.redirect("/items");
 }
 

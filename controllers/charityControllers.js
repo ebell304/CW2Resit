@@ -13,17 +13,11 @@ exports.item_list = function(req, res) {
     
     
     db.getAllItems().then((list) => {
-        let filteredItems = list;
-
-        // Apply store filter
-        if (store) {
-            filteredItems = filteredItems.filter(item => item.store === store);
-        }
 
         // Render the 'entries' view with the filtered items
         res.render('entries', {
-            'title': `Items for Store: ${store}`,
-            'entries': filteredItems
+            'entries': list,
+            title: 'Viewing All Available Items'
         });
         console.log('Filtered items for store:', store);
     })
@@ -43,6 +37,12 @@ exports.item_list_by_store = function(req, res) {
     if(store == userStore){
         canEdit = true; // user can edit if their store matches that of URL
     }
+
+    // function to capitalize first letter of store
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    let capitalisedStore = capitalizeFirstLetter(store);
     
     db.getAllItems().then((list) => {
         let filteredItems = list.filter(item => item.store === store);
@@ -51,7 +51,8 @@ exports.item_list_by_store = function(req, res) {
         // Render the 'entries' view with the filtered items
         res.render('entries', {
             'entries': filteredItems,
-            canEdit: canEdit
+            canEdit: canEdit,
+            title: ('Viewing Items from ' + capitalisedStore + ' Store')
         });
         console.log('Filtered items for store:', store);
     })

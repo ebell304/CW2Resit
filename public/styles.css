@@ -1,20 +1,31 @@
-
+body{
+    background: linear-gradient(90deg, rgba(78,236,236,1) 0%, rgba(173,242,255,1) 50%, rgba(0,205,246,1) 100%);
+}
 
 .banner{
-    background-color: darkslategrey;
+    background-color: #006666;
     height: 10%;
+    display: flex;
+    justify-content: center;
+    border: 5px inset rgba(78,236,236,1);
+}
+
+.banner h1{
+    align-self: center;
+    color: white;
 }
 
 
 nav{
-    background-color: grey;
+    background-color: #006666;
     display: flex;
     justify-content: space-between;
     padding-left: 12%;
     padding-right: 12%;
     align-items: center;
 
-    height: 5%;
+    height: 6%;
+    border-bottom: 5px solid rgba(78,236,236,1);
     
 }
 
@@ -28,15 +39,55 @@ nav a:hover{
     color: lightcyan;
 }
 
+#login{
+    background-color: #18387c;
+    margin-right: 5%;
+}
+
+.loginButton{
+    margin-top: 5px;
+    height: 3%;
+    
+}
+
+.loginButton a{
+    text-shadow: 1px 1px black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+}
+
+
+.pageTitle h1{
+    height: 10%;
+    display: flex;
+    align-items: center;
+}
+
+.pageTitle h2{
+    font-size: 22px;
+    padding-bottom: 10px;
+}
+.pageTitle h1, h2{
+    background: #006666;
+    color: white;
+    width: 90%;
+    margin: auto;
+    text-shadow: 2px 2px 2px black;
+    padding-left: 3%;   
+    
+}
+
 
 
 .entryContainer{
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
 
-    background-color: red;
+    background-color: #006666;
+    
     margin-left: 5%;
     margin-right: 5%;
+    height:auto;
 
 }
 
@@ -48,6 +99,7 @@ nav a:hover{
     margin-top: 2.5%;
     margin-bottom: 2.5%;
     width: 100%;
+    min-height: 170px;
 }
 
 .item h5, h4, p{

@@ -8,12 +8,16 @@
 
 
 
-
+    <div class="pageTitle">
+    <h1>{{title}}</h1>
+    <h2>Browse through our entire catalogue of items, available in one our of four local charity shops.<h2>
+    </div>
     {{#canEdit}}
         <a id="addItem" href="/addItem" class="btn btn-primary">
             Add New Item
         </a>
     {{/canEdit}}
+    
 
     <div class="entryContainer">
     
@@ -22,8 +26,8 @@
             <div>
                 <h4>{{name}}</h4>
                 <div>
-                    <h5>£{{price}}<h5>
-                    <h5>Store: {{store}}</h5>
+                    <h5><b>£{{price}}</b><h5>
+                    <h5>Charity Store: {{store}}</h5>
                 </div>
                 <p>{{description}}</p>
                 

@@ -13,6 +13,7 @@ body{
 .banner h1{
     align-self: center;
     color: white;
+    text-shadow: 2px 2px 2px black;
 }
 
 
@@ -33,16 +34,17 @@ nav a{
     color: white;
     font-size: 19px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-shadow: 1px 1px black;
+    text-shadow: 1px 1px 1px black;
 }
 nav a:hover{
     color: lightcyan;
 }
 
+
+
 #login{
     background-color: #18387c;
     margin-right: 5%;
-    border: 5px inset rgba(78,236,236,1);
 }
 
 .loginButton{
@@ -55,6 +57,8 @@ nav a:hover{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18px;
 }
+
+
 
 
 .pageTitle{
@@ -93,18 +97,21 @@ nav a:hover{
     margin-left: 5%;
     margin-right: 5%;
     height:auto;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
 
 }
 
 .item{
     background-color: lightyellow;
-    box-shadow: 10px 10px 10px rgb(0 0 0 / 40%);
+    box-shadow: 15px 15px 10px rgb(0 0 0 / 40%);
     margin-left: 10%;
     margin-right: 10%;
     margin-top: 2.5%;
     margin-bottom: 2.5%;
     width: 100%;
     min-height: 170px;
+    border-radius: 10px;
 }
 
 .item h5, h4, p{
@@ -131,7 +138,7 @@ nav a:hover{
 .loginContainer label{
     color: white;
     font-size: 25px;
-    text-shadow: 2px 2px black;
+    text-shadow: 1px 2px 5px black;
     margin-left: 2%;
     margin-top: 1%;
 }
@@ -139,9 +146,6 @@ nav a:hover{
 #username, #password{
     margin-left: 2%;
 }
-
-
-
 
 .confirmLogin {
     border: 5px inset rgba(78,236,236,1);
@@ -153,4 +157,41 @@ nav a:hover{
     margin-top: 2%;
     margin-left: 2.6%;
     width: 10%;
+}
+
+
+
+
+
+
+
+
+
+.addItemContainer{
+    display: flex;
+    justify-content: center;
+    margin:5px;
+}
+
+#addItem{
+    width: 50%;
+    background-color: #1d860f;
+    text-shadow: 2px 2px 1px black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+}
+
+.editItemContainer{
+    display: flex;
+    justify-content: space-evenly;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 1px black;
+}
+
+#update{
+    background-color: #18387c;
+}
+
+#delete{
+    background-color: rgb(165, 12, 12);
 }

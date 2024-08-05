@@ -13,9 +13,11 @@
     <h2>Browse through our entire catalogue of items, available in one our of four local charity shops.<h2>
     </div>
     {{#canEdit}}
+    <div class="addItemContainer">
         <a id="addItem" href="/addItem" class="btn btn-primary">
             Add New Item
         </a>
+    </div>
     {{/canEdit}}
     
 
@@ -34,13 +36,15 @@
             </div>
 
             {{#canEdit}}
-            <a id="update" href="/update/{{_id}}" class="btn btn-primary">
-                Update Item
-            </a>
+            <div class="editItemContainer">
+                <a id="update" href="/update/{{_id}}" class="btn btn-primary">
+                    Update Item
+                </a>
 
-            <a id="delete" href="/delete/{{_id}}" class="btn btn-primary">
-                Remove Item
-            </a>
+                <a id="delete" href="/delete/{{_id}}" class="btn btn-primary">
+                    Remove Item
+                </a>
+            </div>
             {{/canEdit}}
             
 

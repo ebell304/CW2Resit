@@ -53,6 +53,7 @@ exports.item_list_by_store = function(req, res) {
             'entries': filteredItems,
             canEdit: canEdit,
             title: ('Viewing ' + capitalisedStore + ' Store Items'),
+            user: req.user
         });
         console.log('Filtered items for store:', store);
     })
@@ -72,7 +73,9 @@ exports.landing_page = function(req, res) {
 
 
 exports.about = function(req, res){
-    res.render('about');
+    res.render('about', {
+        'user': 'user'
+    });
 }
 
 

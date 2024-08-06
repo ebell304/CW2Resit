@@ -52,7 +52,7 @@ exports.item_list_by_store = function(req, res) {
         res.render('entries', {
             'entries': filteredItems,
             canEdit: canEdit,
-            title: ('Viewing Items from ' + capitalisedStore + ' Store')
+            title: ('Viewing ' + capitalisedStore + ' Store Items'),
         });
         console.log('Filtered items for store:', store);
     })
@@ -64,11 +64,7 @@ exports.item_list_by_store = function(req, res) {
 
 // callback function for website root
 exports.landing_page = function(req, res) {
-    res.render("entries", {
-        'name': 'Book',
-        'description': 'An old book.',
-        'price': '999.99'
-        });
+    res.redirect('/items');
 }
 
 
@@ -76,7 +72,7 @@ exports.landing_page = function(req, res) {
 
 
 exports.about = function(req, res){
-    res.send('<h1>ABOUT US: Not yet implemented.</h1>');
+    res.render('about');
 }
 
 
@@ -102,6 +98,7 @@ exports.delete_item = function(req, res){
     console.log("ID = ", _id);
     db.deleteItem(_id);
     console.log("REMOVED");
+    //res.redirect(`/items/${encodeURIComponent(store)}`);
     res.redirect('/items');
 }
 
@@ -131,6 +128,7 @@ exports.confirm_update= function(req, res){
     console.log("CONFIRMING UPDATE");
     let _id = req.params._id;
     db.updateItem(_id, req.body.name, req.body.description, req.body.price, req.body.tag);
+    //res.redirect(`/items/${encodeURIComponent(store)}`);
     res.redirect('/items');
 }
 

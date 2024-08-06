@@ -70,19 +70,23 @@ nav a:hover{
     display: flex;
     align-items: center;
     margin-top: 100px;
+    text-shadow: 2px 2px 2px black;
 }
 
 .pageTitle h2{
     font-size: 22px;
     padding-bottom: 10px;
+    text-shadow: 1px 1px 1px black;
+    margin-left: 5%;
+    margin-right: 5%;
+    width: auto;
 }
 .pageTitle h1, h2{
     background: #006666;
     color: white;
     width: 90%;
     margin: auto;
-    text-shadow: 2px 2px 2px black;
-    padding-left: 3%;   
+    padding-left: 3%;
     
 }
 
@@ -195,3 +199,35 @@ nav a:hover{
 #delete{
     background-color: rgb(165, 12, 12);
 }
+
+
+
+
+
+
+
+
+
+
+.storesPanel{
+    background-color:#006666;
+    margin-left: 5%;
+    margin-right: 5%;
+    padding-bottom: 20px;
+    
+}
+.storesPanel h4{
+    margin-left: 5%;
+    padding-top: 30px;
+    font-size: 30px;
+    text-shadow: 2px 2px 2px black;
+    color: white;
+}
+.storesPanel p{
+    text-shadow: 1px 1px 1px black;
+    color: white;
+    font-size: 20px;
+}
+
+
+

@@ -135,7 +135,6 @@ nav a:hover{
 .loginContainer{
     margin-left: 5%;
     margin-right: 5%;
-    margin-top: 2%;
     background-color:#006666;
 }
 
@@ -152,7 +151,6 @@ nav a:hover{
 }
 
 .confirmLogin {
-    border: 5px inset rgba(78,236,236,1);
     background-color: #18387c;
     text-shadow: 2px 2px 2px black;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -230,4 +228,34 @@ nav a:hover{
 }
 
 
+.addEntryForm {
+    background-color: #006666;
+    padding-bottom: 30px;
+}
+.addEntryForm h2{
+    background-color: #006666;
+    width: 100%;
+    font-size: 30px;
+    text-shadow: 2px 2px 2px black;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+.addEntryForm label{
+    margin-left: 5%;
+    color: white;
+    font-size: 22px;
+    text-shadow: 1px 1px 1px black;
+}
 
+.addEntryForm input{
+    margin-left: 5%;
+    width: 30%;
+}
+
+
+.postEntry input, #logout{
+    background-color: 18387c;
+    text-shadow: 1px 1px 1px black;
+    font-size: 18px;
+    width: 10%;
+}

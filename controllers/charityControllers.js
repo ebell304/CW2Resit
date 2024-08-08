@@ -219,7 +219,7 @@ exports.show_admin = function (req, res) {
 
 
 exports.admin_add_new_user=function(req, res){
-    res.render('addUser',{ user:"admin"})
+    res.render('addUser',{ user:"admin", title:'Add New Volunteer'})
     
 }
 

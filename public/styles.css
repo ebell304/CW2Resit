@@ -146,7 +146,7 @@ nav a:hover{
     margin-top: 1%;
 }
 
-#username, #password{
+.loginContainer #username, #password{
     margin-left: 2%;
 }
 
@@ -175,7 +175,7 @@ nav a:hover{
     margin:5px;
 }
 
-#addItem{
+#addItem, #addUser{
     width: 50%;
     background-color: #1d860f;
     text-shadow: 2px 2px 1px black;
@@ -265,4 +265,46 @@ nav a:hover{
     text-shadow: 1px 1px 1px black;
     font-size: 18px;
     width: 20%;
+}
+
+
+
+.adminDashboard, .addUser{
+    background-color: #006666;
+    padding: 30px;
+}
+
+.adminDashboard h1, .addUser h1{
+    color: white;
+    font-size: 35px;
+    text-shadow: 2px 2px 2px black;
+}
+
+#addUser{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    margin-right: 10%;
+    width: 80%;
+}
+
+.staff{
+    background-color: lightyellow;
+    box-shadow: 15px 15px 10px rgb(0 0 0 / 40%);
+    margin-bottom: 3%;
+}
+
+.staff p{
+    font-size: 20px;
+}
+
+#removeStaff{
+    background-color: rgb(165, 12, 12);
+    text-shadow: 1px 1px 1px black;
+}
+
+
+
+.addVolunteer input{
+    background-color:  #18387c;
 }

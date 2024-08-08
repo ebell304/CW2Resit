@@ -6,25 +6,29 @@
 
 <body class="container">
 
-  {{#user}}
+  <div class="adminDashboard">
+
+  <div>
+  <h1>{{title}}</h1>
+  </div>
+
+    {{#user}}
 
     <a id="addUser" href="/addUser" class="btn btn-primary">
       Add New Staff
     </a>
       
-  {{/user}}
-  </div>
-  <h1>{{title}}</h1>
-  <div>
+    {{/user}}
+
   {{#users}}
-    <div class="card">
+    <div class="card staff">
       <div class="card-body">
-            <h4 class="card-title">Username : {{user}}</h4>
+            <h4 class="card-title">Username: {{user}}</h4>
             <p class="card-text">
-                Role : {{role}}
+                Role: <b>{{role}}</b>
             </p>
             <p class="card-text">
-                store : {{store}}
+                Store: <b>{{store}}</b>
             </p>
       </div>
       <a id="removeStaff" href="/removeStaff/{{user}}" class="btn btn-primary">
@@ -33,6 +37,9 @@
     </div>
   {{/users}}
     </div>
+  </div>
+
+
   </div>
 
 

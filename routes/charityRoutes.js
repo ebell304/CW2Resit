@@ -9,21 +9,21 @@ const auth = require('../auth/auth.js');
 //           REQUEST HANDLERS           //
 
 // request handler for application root
-router.get("/", controller.landing_page);
+router.get("/", auth.verify, controller.landing_page);
 
 // request handler for items page
-router.get('/items', controller.item_list);
+router.get('/items', auth.verify, controller.item_list);
 
 // request handler for add item page
 router.get('/addItem', auth.verifyVolunteer, controller.add_item);
 router.post('/addItem', auth.verifyVolunteer, controller.post_new_entry);
 
 
-router.get('/delete/:_id', controller.delete_item);
+router.get('/delete/:_id', auth.verifyVolunteer, controller.delete_item);
 
 
-router.get('/update/:_id',  controller.update_item);
-router.post('/update/:_id', controller.confirm_update);
+router.get('/update/:_id', auth.verifyVolunteer, controller.update_item);
+router.post('/update/:_id', auth.verifyVolunteer,  controller.confirm_update);
 
 
 
@@ -31,7 +31,7 @@ router.post('/update/:_id', controller.confirm_update);
 
 
 // request handler for about page
-router.get('/about', controller.about);
+router.get('/about', auth.verify, controller.about);
 
 // request handler to get entries by specific user
 router.get('/entriesByUser', controller.get_entries_by_user);

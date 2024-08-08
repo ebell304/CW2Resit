@@ -17,7 +17,8 @@ exports.item_list = function(req, res) {
         // Render the 'entries' view with the filtered items
         res.render('entries', {
             'entries': list,
-            title: 'Viewing All Available Items'
+            title: 'Viewing All Available Items',
+            user: req.user
         });
         console.log('Filtered items for store:', store);
     })
@@ -74,7 +75,7 @@ exports.landing_page = function(req, res) {
 
 exports.about = function(req, res){
     res.render('about', {
-        'user': 'user'
+        'user': req.user
     });
 }
 

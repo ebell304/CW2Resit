@@ -30,7 +30,6 @@ exports.login = function (req, res,next) {
           }
           if (payload.role == "volunteer") {
             return res.redirect(`/items/${encodeURIComponent(payload.store)}`);
-            //return res.redirect('/items');
         }
     
     next();

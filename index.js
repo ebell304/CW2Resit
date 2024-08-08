@@ -37,7 +37,7 @@ const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: true}));
 
 // opens server on port 3000
-app.listen(3000, () => {
+app.listen(10000, () => {
     console.log('Server started on port 3000. Ctrl^c to quit.');
 })
 

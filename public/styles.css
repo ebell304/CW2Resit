@@ -259,3 +259,10 @@ nav a:hover{
     font-size: 18px;
     width: 10%;
 }
+
+.updateEntry input{
+    background-color: 18387c;
+    text-shadow: 1px 1px 1px black;
+    font-size: 18px;
+    width: 20%;
+}

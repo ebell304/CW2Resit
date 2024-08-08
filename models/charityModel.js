@@ -148,6 +148,8 @@ class ItemList{
         console.log("ID: ", _id);
 
 
+        price = parseFloat(price).toFixed(2);
+
 
         const update = {
             $set: {

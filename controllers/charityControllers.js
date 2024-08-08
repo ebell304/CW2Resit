@@ -102,8 +102,7 @@ exports.delete_item = function(req, res){
     console.log("ID = ", _id);
     db.deleteItem(_id);
     console.log("REMOVED");
-    //res.redirect(`/items/${encodeURIComponent(store)}`);
-    res.redirect('/items');
+    res.redirect(`/items/${encodeURIComponent(req.user.store)}`);
 }
 
 
@@ -125,15 +124,18 @@ exports.post_new_entry = function(req, res) {
 
 exports.update_item = function(req, res){
     console.log("SHOWING UPDATE PAGE");
-    res.render('updateEntry');
+    res.render('updateEntry', {
+        'user': 'user'
+    });
 }
 
 exports.confirm_update= function(req, res){
     console.log("CONFIRMING UPDATE");
     let _id = req.params._id;
     db.updateItem(_id, req.body.name, req.body.description, req.body.price, req.body.tag);
-    //res.redirect(`/items/${encodeURIComponent(store)}`);
-    res.redirect('/items');
+
+    // redirects to volunteer's store page upon update
+    res.redirect(`/items/${encodeURIComponent(req.user.store)}`);
 }
 
 

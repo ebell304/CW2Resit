@@ -1,5 +1,5 @@
 const itemDAO = require('../models/charityModel');
-const db = new itemDAO();
+const db = new itemDAO({ filename: "charityShop.db", autoload: true });
 const userDao = require('../models/userModel'); 
 
 

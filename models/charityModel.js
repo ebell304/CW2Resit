@@ -5,7 +5,7 @@ class ItemList{
     // instantiating database 
     constructor(dbFilePath) {
         if (dbFilePath) {
-            this.db = new nedb({ filename: dbFilePath, autoload: true });
+            this.db = new nedb({ filename: dbFilePath.filename, autoload: true });
             console.log('Database connected to ' + dbFilePath);
         } else {
         this.db = new nedb();
@@ -17,6 +17,7 @@ class ItemList{
 
     init() {
 
+        /*
         this.db.insert({
             name: 'Dress Shirt',
             description: 'White long-sleeved shirt - Large',
@@ -71,6 +72,7 @@ class ItemList{
             uploadDate: '08/02/2024',
             tag:'home',
         });
+        */
     }
 
 

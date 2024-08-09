@@ -1,13 +1,13 @@
 const Datastore = require("gray-nedb");
-const bcrypt = require('bcrypt'); const
-saltRounds = 10;
+const bcrypt = require('bcrypt'); 
+const saltRounds = 10;
 
 class UserDAO { 
 
     constructor(dbFilePath) { 
         if(dbFilePath) { //embedded 
             this.db = new Datastore({
-                filename: dbFilePath, autoload: true });
+                filename: dbFilePath.filename, autoload: true });
             } else { //in memory
                 this.db = new Datastore();
             }
@@ -15,8 +15,10 @@ class UserDAO {
 
         // for the demo the password is the bcrypt of the username 
         init() { 
+            /*
             this.db.insert({ user: 'Peter', password:'$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C', role: 'admin', store: 'north'});
             this.db.insert({user: 'Ann', password:'$2b$10$bnEYkqZM.MhEF/LycycymOeVwkQONq8kuAUGx6G5tF9UtUcaYDs3S', role: 'volunteer', store: 'west'}); 
+            */
             return this;
         } 
 
@@ -69,6 +71,6 @@ class UserDAO {
 
 } 
         
-const dao = new UserDAO(); 
+const dao = new UserDAO({ filename: "users.db", autoload: true }); 
 dao.init();
 module.exports = dao;

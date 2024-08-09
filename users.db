@@ -1,0 +1,4 @@
+{"user":"Peter","password":"$2b$10$I82WRFuGghOMjtu3LLZW9OAMrmYOlMZjEEkh.vx.K2MM05iu5hY2C","role":"admin","store":"north","_id":"UYiYsnMnTsofXVOi"}
+{"user":"volunteer","password":"$2b$10$rYPK0LHiNJehXI1Iam0qFujarls1dyHN0ndZRJ1QPvMWSyIBHTkdi","role":"volunteer","store":"east","_id":"rxGlAObpAMXhHD0F"}
+{"user":"Ann","password":"$2b$10$bnEYkqZM.MhEF/LycycymOeVwkQONq8kuAUGx6G5tF9UtUcaYDs3S","role":"volunteer","store":"west","_id":"zI0MzpyO78QzVXIq"}
+{"user":"volunteer2","password":"$2b$10$2ALEvDNiGXisTnzrZqfRBOWFnN9t1og52ySlnspdFb9vK/DO3V5AK","role":"volunteer","store":"south","_id":"ce99CTg5nAjdwyGD"}

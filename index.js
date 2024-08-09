@@ -36,9 +36,10 @@ const bodyParser = require('body-parser');
 // adds middleware to parse incoming request bodies before handling
 app.use(bodyParser.urlencoded({extended: true}));
 
-// opens server on port 3000
+// opens server on port 10000 to communicate with Render
+// port 3000 for localhost
 app.listen(10000, () => {
-    console.log('Server started on port 3000. Ctrl^c to quit.');
+    console.log('Server started on port 10000. Ctrl^c to quit.');
 })
 
 
